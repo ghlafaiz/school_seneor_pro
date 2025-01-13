@@ -132,6 +132,9 @@
             }
         }
     </style>
+
+    <!-- إضافة مكتبة SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -142,7 +145,7 @@
     <div class="form-container">
         <h1>استبانات</h1>
         <form id="surveyForm" method="POST" 
-        action="https://script.google.com/macros/s/AKfycbwzRUmHyO3dZh8lOBp4k3i3pS2c3arqbV35QwO_xMl3rkw5jB7LzSco91cLFu7BgcYPZg/exec">
+        action="https://script.google.com/macros/s/AKfycby5gdb7sF8hJRLWAi82qa-gqM30ekTZ5ON8XPWShAaSGF3eijqpyEYTmcla9rZiRKgGKw/exec" onsubmit="submitForm(event)">
             <div class="form-group">
                 <label for="name">الاسم:</label>
                 <input type="text" id="name" name="name" placeholder="أدخل اسمك" required>
@@ -218,61 +221,47 @@
             <button type="submit">إرسال</button>
         </form>
     </div>
+
+    <script>
+        async function submitForm(event) {
+            event.preventDefault(); // منع تحديث الصفحة
+
+            const form = document.getElementById("surveyForm");
+            const formData = new FormData(form);
+
+            // تحويل البيانات إلى URLSearchParams لإرسالها إلى Apps Script
+            const params = new URLSearchParams();
+            formData.forEach((value, key) => {
+                params.append(key, value);
+            });
+
+            try {
+                // إرسال البيانات إلى Apps Script باستخدام fetch
+                const response = await fetch("https://script.google.com/macros/s/AKfycby5gdb7sF8hJRLWAi82qa-gqM30ekTZ5ON8XPWShAaSGF3eijqpyEYTmcla9rZiRKgGKw/exec", {
+                    method: "POST",
+                    body: params,
+                });
+
+                const message = await response.text(); // احصل على الرسالة من الخادم
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "تم حفظ عملك بنجاح",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                form.reset(); // إعادة تعيين النموذج
+
+            } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "حدث خطأ",
+                    text: "حدث خطأ أثناء إرسال النموذج: " + error.message,
+                });
+            }
+        }
+    </script>
+
 </body>
-
 </html>
-
-</body>
-
-</html>
-
-
-</html>
-
-
-
-
-</html>
-
-
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نموذج التسجيل</title>
-  <script>
-    async function submitForm(event) {
-      event.preventDefault(); // منع تحديث الصفحة
-
-      const form = document.getElementById("registrationForm");
-      const formData = new FormData(form);
-
-      // تحويل البيانات إلى URLSearchParams لإرسالها إلى Apps Script
-      const params = new URLSearchParams();
-      formData.forEach((value, key) => {
-        params.append(key, value);
-      });
-
-      try {
-        // أرسل البيانات إلى Apps Script باستخدام fetch
-        const response = await fetch
-        ("https://script.google.com/macros/s/AKfycbwzRUmHyO3dZh8lOBp4k3i3pS2c3arqbV35QwO_xMl3rkw5jB7LzSco91cLFu7BgcYPZg/exec", {
-          method: "POST",
-          body: params,
-        });
-
-        const message = await response.text(); // احصل على الرسالة من الخادم
-        alert(message); // عرض الرسالة كإشعار
-        form.reset(); // إعادة تعيين النموذج
-
-      } catch (error) {
-        alert("حدث خطأ أثناء إرسال النموذج: " + error.message);
-      }
-    }
-  </script>
-</body>
-
-</html>
-
-
