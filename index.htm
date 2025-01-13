@@ -145,7 +145,7 @@
     <div class="form-container">
         <h1>استبانات</h1>
         <form id="surveyForm" method="POST" 
-        action="https://script.google.com/macros/s/AKfycby5gdb7sF8hJRLWAi82qa-gqM30ekTZ5ON8XPWShAaSGF3eijqpyEYTmcla9rZiRKgGKw/exec" onsubmit="submitForm(event)">
+        action="https://script.google.com/macros/s/AKfycbyEmNNh2iFpKEGTbupAEznvi_wK98zJEDxNS0vBSCG6KvpsJCoDuIA36zxx4_-rzTN5wA/exec" onsubmit="submitForm(event)">
             <div class="form-group">
                 <label for="name">الاسم:</label>
                 <input type="text" id="name" name="name" placeholder="أدخل اسمك" required>
@@ -154,7 +154,10 @@
                 <label for="class">الفصل:</label>
                 <input type="text" id="class" name="class" placeholder="أدخل فصلك" required>
             </div>
-
+            <div class="form-group">
+                <label for="class"> اسم مدرستك</label>
+                <input type="text" id="class" name="class" placeholder="أدخل اسم مدرستك" required>
+            </div>
             <!-- السؤال 1 -->
             <div class="question">
                 <label>1. ماهي لغتك الأم؟</label>
@@ -212,6 +215,13 @@
                     <div class="option"><input type="radio" name="q6" value="3-5 ساعات" required> 3-5 ساعات</div>
                 </div>
             </div>
+             <div class="question">
+                <label>7. هل تودين دراسه اللغه الصينيه</label>
+                <div class="question-options">
+                    <div class="option"><input type="radio" name="q2" value="نعم" required> نعم</div>
+                    <div class="option"><input type="radio" name="q2" value="لا" required> لا</div>
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="comments">ملاحظات:</label>
@@ -237,7 +247,7 @@
 
             try {
                 // إرسال البيانات إلى Apps Script باستخدام fetch
-                const response = await fetch("https://script.google.com/macros/s/AKfycby5gdb7sF8hJRLWAi82qa-gqM30ekTZ5ON8XPWShAaSGF3eijqpyEYTmcla9rZiRKgGKw/exec", {
+                const response = await fetch(" https://script.google.com/macros/s/AKfycbyEmNNh2iFpKEGTbupAEznvi_wK98zJEDxNS0vBSCG6KvpsJCoDuIA36zxx4_-rzTN5wA/exec", {
                     method: "POST",
                     body: params,
                 });
