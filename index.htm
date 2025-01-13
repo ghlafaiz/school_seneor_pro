@@ -144,8 +144,8 @@
 
     <div class="form-container">
         <h1>استبانات</h1>
-        <form id="surveyForm" method="POST" 
-        action="https://script.google.com/macros/s/AKfycbwyuxunTJIM7gQaTuzPPeLPUfYKo8FGXWJE5AApQQc7LrJrryXROh1k-MVFt3I9VsskIQ/exec">
+        <form id="surveyForm" method="POST" onsubmit="submitForm(event)" 
+        action="https://script.google.com/macros/s/AKfycby6SkcJSd9pAqqMuBPanCu-hsnTIYthxmKPh-M04OP61oWAtGr9zPxQRmdWmnKGfjFxCA/exec">
             <div class="form-group">
                 <label for="name">الاسم:</label>
                 <input type="text" id="name" name="name" placeholder="أدخل اسمك" required>
@@ -155,8 +155,8 @@
                 <input type="text" id="class" name="class" placeholder="أدخل فصلك" required>
             </div>
             <div class="form-group">
-                <label for="class"> اسم مدرستك</label>
-                <input type="text" id="class" name="school" placeholder=" :أدخل اسم مدرستك" required>
+                <label for="school">اسم مدرستك:</label>
+                <input type="text" id="school" name="school" placeholder="أدخل اسم مدرستك" required>
             </div>
             <!-- السؤال 1 -->
             <div class="question">
@@ -215,13 +215,14 @@
                     <div class="option"><input type="radio" name="q6" value="3-5 ساعات" required> 3-5 ساعات</div>
                 </div>
             </div>
-             <div class="question">
-                <label>7. هل تودين دراسه اللغه الصينيه</label>
+            <div class="question">
+                <label>7. هل تودين دراسه اللغه الصينيه؟</label>
                 <div class="question-options">
                     <div class="option"><input type="radio" name="q2" value="نعم" required> نعم</div>
                     <div class="option"><input type="radio" name="q2" value="لا" required> لا</div>
                 </div>
             </div>
+
 
             <div class="form-group">
                 <label for="comments">ملاحظات:</label>
@@ -247,7 +248,8 @@
 
             try {
                 // إرسال البيانات إلى Apps Script باستخدام fetch
-                const response = await fetch(" https://script.google.com/macros/s/AKfycbwyuxunTJIM7gQaTuzPPeLPUfYKo8FGXWJE5AApQQc7LrJrryXROh1k-MVFt3I9VsskIQ/exec", {
+                const response = await fetch
+                (" https://script.google.com/macros/s/AKfycby6SkcJSd9pAqqMuBPanCu-hsnTIYthxmKPh-M04OP61oWAtGr9zPxQRmdWmnKGfjFxCA/exec", {
                     method: "POST",
                     body: params,
                 });
